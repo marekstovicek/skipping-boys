@@ -21,6 +21,8 @@ use Nette\Database\Context;
  */
 class GalleryManager extends BaseManager{
     
+    
+    /** Konstanty pro práci s databází */
     const 
         TABLE_NAME = 'images',
         COLUMN_ID = 'image_id',
@@ -29,15 +31,17 @@ class GalleryManager extends BaseManager{
         COLUMN_PAGE = 'page',
         COLUMN_SORT = 'sort';
     
-    
+    /** Konstruktor pro injekci Context */
     public function __construct(Context $database) {
         parent::__construct($database);
     }
     
+    /** Vrátí všechny obrázky pro urcitou stranku @param $page */
     public function getImages($page)
     {
        return $this->database->table(self::TABLE_NAME)->where(self::COLUMN_PAGE, $page)->order(self::COLUMN_SORT);            
     }
+    
     
     private function countImages($dir)
     {
