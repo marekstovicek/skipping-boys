@@ -1,0 +1,13 @@
+{snippet}
+    
+    {$imagesCount}
+<div  id="product-images-administration">
+    
+        <div n:for="$i = 0; $i < $imagesCount; $i++">
+                <img src="{$basePath}/{$dir}photo_{$i+1}.jpg" alt="" />
+                <a class="ajax" data-confirm="Opravdu si přejete odstranit vybraný náhled?" n:href="deleteImage! $i+1">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+        </div>
+</div>
+{/snippet}

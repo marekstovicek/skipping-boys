@@ -1,0 +1,15 @@
+{* Latte template *}
+
+{block content}
+<h2>Nastavení stránky {$url}</h2>
+
+{include $formPath, form => contentForm}
+
+{block scripts}
+
+<script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script type="text/javascript" src="{$basePath}/js/tinymce.init.js"></script>
+<script type="text/javascript">
+        initTinyMce("content");
+</script>
+{/block}

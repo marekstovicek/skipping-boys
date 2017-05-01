@@ -1,0 +1,8 @@
+{* Latte template *}
+
+{block content}
+{include $formPath, form => editForm}
+<table class="table table-striped">
+    <tr n:foreach="$shows as $show"><td>{$show->date_from|prettyDate:$show->date_to}</td><td>{$show->name}</td><td><a n:href=":Admin:Reference:default, $show->show_id"><i class="fa fa-pencil" aria-hidden="true"></i></a> | <a n:href=":Admin:Reference:remove, $show->show_id"><i class="fa fa-times" aria-hidden="true"></i></a></td></tr>
+</table>
+    {control visualPaginator}

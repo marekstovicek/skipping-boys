@@ -1,0 +1,22 @@
+{* Latte template *}
+
+{block content}
+{include $formPath, form => videoForm}
+<hr />
+{form sortVideos}
+    {input submit}
+<table>
+     {foreach $videos as $video}
+       
+         <tr><td><h3>{$video->name}  </h3><td>{$video->link|noescape}</td><td>  <a n:href=":Admin:Video:default, $url, $video->video_id"><i class="fa fa-pencil" aria-hidden="true"></i></a> | <a n:href=":Admin:Video:remove, $url, $video->video_id"><i class="fa fa-times" aria-hidden="true"></i></a><br />
+             <p><input type="hidden" name="video_id[]" value="{$video->video_id}" />
+                    <input size="3" type="text" name="sort[]" value="{$video->sort}" /></p></td></tr>
+       
+             
+     {/foreach}
+</table>  
+{/form}
+
+
+
+

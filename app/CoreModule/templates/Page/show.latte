@@ -1,0 +1,10 @@
+{define title}{$page->title}{/define}
+{define description}{$page->description}{/define}
+{block content}
+
+{$page->content|noescape}
+
+<table class="calendar" id="akce">
+        <tr n:foreach="$shows as $show"><th>{$show->date_from|prettyDate:$show->date_to}</th><td>{$show->name}</td></tr>
+    </table>
+        {control visualPaginator}

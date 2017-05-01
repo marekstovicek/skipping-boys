@@ -1,0 +1,5 @@
+{snippet}
+    <table class="calendar" id="akce">
+        <tr n:foreach="$shows as $show"><th>{$show->date|prettyDate}</th><td>{$show->name}</td></tr>
+    </table>
+{/snippet}

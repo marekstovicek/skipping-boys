@@ -1,0 +1,31 @@
+{define title}{$page->title}{/define}
+{define description}{$page->description}{/define}
+{block content}
+<div class="fotog-column">
+	<h2>Foto</h2>
+
+
+	<div id="f-galerie" class="fotogal" style="display:block;">
+		    <h3>Ukázka různorodosti našich akcí</h3>
+
+<p>
+      <a n:foreach="$photos as $photo" href="{$basePath}/{$photo->path}photo_{$photo->image_id}.jpg" data-lightbox="galerie"><img src="{$basePath}/{$photo->thumbs}/photo_{$photo->image_id}.jpg" width="230"></a>
+      		
+		</p>
+	</div>
+</div>
+      
+
+<div class="videog-column">
+       	<h2>Video</h2>
+             
+        {foreach $videos as $video}
+        <h3>{$video->name}</h3>
+	      {$video->link|noescape}
+        {/foreach}
+        
+        
+        
+        
+        
+</div>	

@@ -1,0 +1,18 @@
+parameters:
+        # Presentery.
+        
+        page: Core:Page
+        
+        
+services:
+    security.authorizator: # Nastavení zdrojů a pravidel přístupu k nim v rámci CoreModule pomocí statického ACL.
+                setup:
+                        - addResource(%page%)
+                        - allow(%guest%, %page%)
+                        - allow(%member%, %page%)
+                        - allow(%admin%, %page%)
+
+    - App\CoreModule\Model\PageManager
+    - App\CoreModule\Model\ShowManager
+    - App\CoreModule\Model\VideoManager
+    - App\CoreModule\Model\GalleryManager

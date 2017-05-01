@@ -1,0 +1,23 @@
+{* Latte template *}
+
+{block content}
+{include $formPath, form => uploadForm}
+<hr />
+{form sortImages}
+    {input submit}
+<div  id="product-images-administration">
+    
+        <div n:foreach="$images as $image">
+                <img width="250" src="{$basePath}/{$image->thumbs}/photo_{$image->image_id}.jpg" alt="" />
+                <a data-confirm="Opravdu si přejete odstranit vybraný náhled?" n:href=":Admin:Gallery:remove, $url, $image->image_id">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+                <p><input type="hidden" name="image_id[]" value="{$image->image_id}" />
+                    <input size="3" type="text" name="sort[]" value="{$image->sort}" /></p>
+        </div>
+</div>
+{/form}
+
+        
+
+

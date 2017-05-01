@@ -1,0 +1,15 @@
+{define title}{$page->title}{/define}
+{define description}{$page->description}{/define}
+{block content}
+
+{$page->content|noescape}
+
+ <div class="video-column">
+               {if isset($video)}
+                   {foreach $video as $vid}
+                       {$vid|noescape}
+                   {/foreach}
+               {/if}
+          </div>
+
+

@@ -1,0 +1,33 @@
+
+parameters:
+        # Presentery.
+        administration: Admin:HomePage
+        content: Admin:Content
+        seo: Admin:Seo
+        gallery: Admin:Gallery
+        reference: Admin:Reference
+        video: Admin:Video
+        
+        
+        
+services:
+    security.authorizator: # Nastavení zdrojů a pravidel přístupu k nim v rámci CoreModule pomocí statického ACL.
+                setup:
+                        - addResource(%administration%)
+                        - addResource(%content%)
+                        - addResource(%seo%)
+                        - addResource(%gallery%)
+                        - addResource(%reference%)
+                        - addResource(%video%)
+                        - allow(%guest%, %administration%, 'login')
+                        - allow(%admin%, %administration%, 'default')
+                        - allow(%admin%, %administration%, 'logout')
+                        - allow(%admin%, %seo%, 'default')
+                        - allow(%admin%, %content%, 'default')
+                        - allow(%admin%, %gallery%, 'default')
+                        - allow(%admin%, %gallery%, 'remove')
+                        - allow(%admin%, %reference%, 'default')
+                        - allow(%admin%, %reference%, 'remove')
+                        - allow(%admin%, %video%, 'default')
+                        - allow(%admin%, %video%, 'remove')
+    

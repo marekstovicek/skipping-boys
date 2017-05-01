@@ -1,0 +1,89 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>{ifset title}Skipping Boys - {include title|stripHtml}{/ifset}</title>
+        <meta name="description" content="{include description|stripHtml}" />
+        <link rel="stylesheet" href="{$basePath}/css/style.css">
+        <link rel="stylesheet" href="{$basePath}/css/lightbox.css">
+        <script type="text/javascript">
+            
+        </script>
+        <link rel="stylesheet" href="{$basePath}/css/script.css">
+        
+        
+	<meta name="viewport" content="width=device-width">
+	{block head}{/block}
+</head>
+<body onload="initialize(); ">
+        <header>
+      <div id="inner-header">
+      <menu>
+        <li><a {if $active == 'default'}class="active"{/if} n:href=":Core:Page:default" >DOMŮ</a></li>
+        <li><a {if $active == 'about'}class="active"{/if} n:href=":Core:Page:about"  >O NÁS</a></li>
+        <li><a {if $active == 'show'}class="active"{/if} n:href=":Core:Page:show"  >VYSTOUPENÍ</a></li>
+        <li><a {if $active == 'gallery'}class="active"{/if} n:href=":Core:Page:gallery"  >GALERIE</a></li>
+        <li><a {if $active == 'contact'}class="active"{/if} n:href=":Core:Page:contact"  >KONTAKT</a></li>
+      </menu>
+      <div id="head-box">
+        <h1><a href="#">Skipping Boys<span></span></a></h1>
+        <div id="screen">
+          <div id="slideshow">
+              <img class="slide"  n:foreach="$foto as $fotka"  src="{$basePath}/{$fotka}" width="580" height="380" style="z-index: 2" alt="Skipping Boys" />
+    
+  </div>
+        </div>
+      </div>
+      
+      </div>
+    </header> 
+
+    <section>
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+        
+	{include content}
+
+    	<hr class="cleaner">
+	</section>
+
+		<footer>
+			<div id="inner-footer">
+				<div id="left-footer">
+					<span>Spolupracujeme s:</span>
+					<ul class="links">
+						<li><a href="http://sokol-liben.cz/" target="_blank">Sokol Libeň</a></li>
+						<li><a href="http://www.crazyjump.sk/" target="_blank">Crazy Jump</a></li>
+					</ul>
+				</div>
+				<div id="right-footer">
+					<div id="fb-root"></div>
+					<script src="http://connect.facebook.net/en_US/all.js#appId=196563577063106&amp;xfbml=1"></script>
+					<fb:like href="http://facebook.com/skippingboys" send="true" width="380" show_faces="false" font=""></fb:like>
+					<p class="contact">
+						<a href="https://www.youtube.com/channel/UCaSyk-3FQaCDeUb48tyMrsg" class="youtube-link">YouTube</a><br>
+						<a href="https://www.facebook.com/SkippingBoys" class="fb-link">Facebook</a><br>
+            <a href="https://www.instagram.com/skippingboys" class="instagram-link">Instagram</a><br>
+            <a href="https://plus.google.com/107999492454393224553/" class="google-link">Google +</a><br>
+						<a href="mailto:info@skippingboys.cz" class="mail-link">info@skippingboys.cz</a>
+					</p>
+				</div>
+				<a href="http://www.toplist.cz/" target="_top"><img src="http://toplist.cz/dot.asp?id=1201073" border="0" alt="TOPlist" width="1" height="1"/></a>
+			</div>
+		</footer>
+	{block scripts}
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+	<script src="{$basePath}/js/main.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/lightbox.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/hideshow.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/script.js"></script>
+        
+	{/block}
+</body>
+</html>
