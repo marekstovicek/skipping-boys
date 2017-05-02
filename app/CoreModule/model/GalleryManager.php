@@ -36,13 +36,21 @@ class GalleryManager extends BaseManager{
         parent::__construct($database);
     }
     
-    /** Vrátí všechny obrázky pro urcitou stranku @param $page */
+    /** Vrátí všechny obrázky pro urcitou stranku.
+     * @param string nazev stranky z databaze 
+     * @return Table/Selection obrázků z databáze
+     */
     public function getImages($page)
     {
        return $this->database->table(self::TABLE_NAME)->where(self::COLUMN_PAGE, $page)->order(self::COLUMN_SORT);            
     }
     
     
+    /**
+     * Vrátí počet obrázků ve složce
+     * @param type string cesta k adrešáři
+     * @return int počet obrázků
+     */
     private function countImages($dir)
     {
         $images = array();
@@ -52,11 +60,22 @@ class GalleryManager extends BaseManager{
         return count($images);
     }
     
+    /**
+     * Uloží obrázek do databáze
+     * @param type Table/Select obrázek
+     * @return int Id uloženého obrázku
+     */
     private function saveImage($img){
         $image = $this->database->table(self::TABLE_NAME)->insert($img);        
         return $image->image_id;
     }
     
+    /**
+     * Uloží celou kolekci obrázků
+     * @param type $images kolekce obrázků z formuláře
+     * @param type $dir cesta k adrsáři pro uložení
+     * @param type $url příslušné stránky
+     */
     public function saveImages($images, $dir, $url){
         $iterator = $this->countImages($dir);
         foreach($images as $image){
@@ -76,6 +95,10 @@ class GalleryManager extends BaseManager{
         }
     }
     
+    /**
+     * Odstraní obrázke podle Id ze složky i databáze
+     * @param int $id id obrázku
+     */
     public function removeImage($id)
     {
         $img = $this->database->table(self::TABLE_NAME)->where(self::COLUMN_ID, $id)->fetch();
@@ -89,6 +112,10 @@ class GalleryManager extends BaseManager{
             
     }
     
+    /**
+     * Aktualizuje nastavení pořadí obrázku 
+     * @param Table/Select $image obrázek
+     */
     public function updateSettings($image){
         
             $this->database->table(self::TABLE_NAME)->where(self::COLUMN_ID, $image[0])->update(['sort' => $image[1]]);

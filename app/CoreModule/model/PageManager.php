@@ -18,22 +18,38 @@ use Nette\Utils\ArrayHash;
  */
 class PageManager extends BaseManager{
     
+    /**
+     * 
+     */
     const 
         TABLE_NAME = 'page',
         COLUMN_ID = 'page_id',
         COLUMN_URL = 'url';
     
+    /**
+     * 
+     * @return type
+     */
     public function getPages()
     {
         return $this->database->table(self::TABLE_NAME)->order(self::COLUMN_ID . ' DESC');
     }
     
+    /**
+     * 
+     * @param type $url
+     * @return type
+     */
     public function getPage($url)
     {
         $row = $this->database->table(self::TABLE_NAME)->where(self::COLUMN_URL, $url)->fetch();
         return $row;
     }
     
+    /**
+     * 
+     * @param type $page
+     */
     public function savePage($page){
         $this->database->table(self::TABLE_NAME)->where(self::COLUMN_ID, $page[self::COLUMN_ID])->update($page);
     }
