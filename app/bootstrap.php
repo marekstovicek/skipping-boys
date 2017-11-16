@@ -12,7 +12,7 @@ Container::extensionMethod('addDatePicker', function (Container $container, $nam
 
 $configurator = new Nette\Configurator;
 
-$configurator->setDebugMode(true); // enable for your remote IP
+$configurator->setDebugMode(false); // enable for your remote IP
 $configurator->enableDebugger(__DIR__ . '/../log');
 
 $configurator->setTimeZone('Europe/Prague');
